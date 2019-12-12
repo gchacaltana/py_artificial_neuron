@@ -24,7 +24,7 @@ class App(object):
 
     def insert_x(self):
         self.entries = int(
-            input("Ingrese cantidad de entradas (x) de la neurona artificial: "))
+            input("Ingrese cantidad de entradas de la neurona artificial: "))
         c = 0
         while len(self.x) < self.entries:
             c += 1
@@ -54,7 +54,7 @@ class App(object):
             an = ArtificialNeuron(self.x, self.w, self.u,
                                   self.u_w, self.transfer_code)
             an.execute()
-            print("Resultado: %s" % an.getResult())
+            an.showResult()
 
 
 if __name__ == "__main__":

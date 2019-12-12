@@ -4,6 +4,9 @@
 __author__ = "Gonzalo Chacaltana Buleje"
 __email__ = "gchacaltanab@gmail.com"
 
+import sys
+import math
+
 
 class ArtificialNeuron(object):
     def __init__(self, x, w, u, u_w, transfer_code):
@@ -12,27 +15,32 @@ class ArtificialNeuron(object):
         self.u = u
         self.u_w = u_w
         self.transfer_code = transfer_code
-        self.r = 0
+        self.ni = 0
+        self.y = 0
 
     def execute(self):
         self.execute_sum_xw()
         self.execute_activation()
 
     def execute_sum_xw(self):
-        ni = 0
+        self.ni = 0
         for i in range(len(self.x)):
-            ni += self.x[i]*self.w[i]
-        ni += self.u*self.u_w
-        ni = round(ni, 2)
-        print("ni : ", ni)
+            self.ni += self.x[i]*self.w[i]
+        self.ni += self.u*self.u_w
+        self.ni = round(self.ni, 2)
+        print("ni : ", self.ni)
 
     def execute_activation(self):
+        self.activation_sigmoidal()
+        self.activation_escalon_unitario()
 
     def activation_sigmoidal(self):
-        pass
+        if self.transfer_code == 1:
+            self.y = round(1/(1+math.pow(math.e, self.ni*-1)), 2)
 
     def activation_escalon_unitario(self):
-        pass
+        if self.transfer_code == 2:
+            self.y = round(1 if self.ni > 0 else 0, 2)
 
-    def getResult(self):
-        return self.r
+    def showResult(self):
+        print("yi = f(x,w): %s" % self.y)
