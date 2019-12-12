@@ -15,6 +15,23 @@ class ArtificialNeuron(object):
         self.r = 0
 
     def execute(self):
+        self.execute_sum_xw()
+        self.execute_activation()
+
+    def execute_sum_xw(self):
+        ni = 0
+        for i in range(len(self.x)):
+            ni += self.x[i]*self.w[i]
+        ni += self.u*self.u_w
+        ni = round(ni, 2)
+        print("ni : ", ni)
+
+    def execute_activation(self):
+
+    def activation_sigmoidal(self):
+        pass
+
+    def activation_escalon_unitario(self):
         pass
 
     def getResult(self):
