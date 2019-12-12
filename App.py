@@ -4,6 +4,8 @@
 __author__ = "Gonzalo Chacaltana Buleje"
 __email__ = "gchacaltanab@gmail.com"
 
+from ArtificialNeuron import ArtificialNeuron
+
 
 class App(object):
     def __init__(self):
@@ -12,7 +14,7 @@ class App(object):
         self.w = []  # pesos de las entradas
         self.u = 1  # umbral
         self.u_w = 0.5  # peso de umbral
-        self.transfer = 0
+        self.transfer_code = 0  # codigo de función de transferencia
 
     def insert_values(self):
         self.insert_x()
@@ -44,9 +46,18 @@ class App(object):
         print("Funcion de Transferencia")
         print("[1] Sigmoidal")
         print("[2] Escalon Unitario")
-        while int(self.transfer)!=0:
-            self.transfer = int(input("Ingrese una opcion: "))
+        while int(self.transfer_code) <= 0:
+            self.transfer_code = int(input("Ingrese una opcion: "))
+
+    def show_result(self):
+        if (len(self.x) > 0 and len(self.w) > 0 and self.u > 0 and self.transfer_code > 0):
+            an = ArtificialNeuron(self.x, self.w, self.u,
+                                  self.u_w, self.transfer_code)
+            an.execute()
+            print("Resultado: %s" % an.getResult())
+
 
 if __name__ == "__main__":
     application = App()
     application.insert_values()
+    application.show_result()
