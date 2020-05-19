@@ -10,13 +10,9 @@ import math
 
 class ArtificialNeuron(object):
     def __init__(self, x, w, u, u_w, transfer_code):
-        self.x = x
-        self.w = w
-        self.u = u
-        self.u_w = u_w
-        self.transfer_code = transfer_code
-        self.ni = 0
-        self.y = 0
+        self.x, self.w, self.u = x,w,u
+        self.u_w, self.transfer_code = u_w, transfer_code
+        self.ni, self.y = 0, 0
 
     def execute(self):
         self.execute_sum_xw()
