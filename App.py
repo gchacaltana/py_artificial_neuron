@@ -36,7 +36,8 @@ class App(object):
         counter = 0
         while len(self.x) < self.entries:
             counter += 1
-            self.x.append(float(input("Ingrese el valor de X%s: " % counter)))
+            self.x.append(
+                float(input("Ingrese el valor de x[{}]: ".format(counter))))
 
     def input_w(self):
         if (int(self.entries) > 0):
@@ -44,7 +45,7 @@ class App(object):
             while len(self.w) < self.entries:
                 counter += 1
                 self.w.append(
-                    float(input("Ingrese el valor de W%s: " % counter)))
+                    float(input("Ingrese el valor de w[{}]: ".format(counter))))
 
     def input_umbral(self):
         if (int(self.entries) > 0):
@@ -52,11 +53,11 @@ class App(object):
             self.u_w = float(input("Ingrese el peso del umbral: "))
 
     def input_activation(self):
-        print("Seleccione la funcion de activation")
+        print("Seleccione la función de activación")
         print("[1] Sigmoidal")
         print("[2] Escalon Unitario")
         while int(self.activation_code) <= 0:
-            self.activation_code = int(input("Ingrese una opcion: "))
+            self.activation_code = int(input("Ingrese una opción: "))
 
     def show_result(self):
         if (len(self.x) > 0 and len(self.w) > 0 and self.u > 0 and self.activation_code > 0):
@@ -67,6 +68,9 @@ class App(object):
 
 
 if __name__ == "__main__":
-    application = App()
-    application.input_values()
-    application.show_result()
+    try:
+        application = App()
+        application.input_values()
+        application.show_result()
+    except (ValueError, AttributeError, Exception) as ex:
+        print(ex)
