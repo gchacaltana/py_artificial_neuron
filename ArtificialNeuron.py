@@ -17,6 +17,7 @@ class ArtificialNeuron(object):
         self.transfer_code = transfer_code
         self.ni = 0
         self.y = 0
+        self.round = 4
 
     def execute(self):
         self.execute_sum_xw()
@@ -27,7 +28,7 @@ class ArtificialNeuron(object):
         for i in range(len(self.x)):
             self.ni += self.x[i]*self.w[i]
         self.ni += self.u*self.u_w
-        self.ni = round(self.ni, 2)
+        self.ni = round(self.ni, self.round)
         print("ni : ", self.ni)
 
     def execute_activation(self):
@@ -36,11 +37,11 @@ class ArtificialNeuron(object):
 
     def activation_sigmoidal(self):
         if self.transfer_code == 1:
-            self.y = round(1/(1+math.pow(math.e, self.ni*-1)), 2)
+            self.y = round(1/(1+math.pow(math.e, self.ni*-1)), self.round)
 
     def activation_escalon_unitario(self):
         if self.transfer_code == 2:
-            self.y = round(1 if self.ni > 0 else 0, 2)
+            self.y = round(1 if self.ni > 0 else 0, self.round)
 
     def showResult(self):
         print("yi = f(x,w): %s" % self.y)
