@@ -1,6 +1,6 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-# Artificial Neuron
+# Artificial Neuron - Apply Forward Propagation
 __author__ = "Gonzalo Chacaltana Buleje"
 __email__ = "gchacaltanab@gmail.com"
 
@@ -10,7 +10,6 @@ import math
 
 class ArtificialNeuron(object):
     def __init__(self, x, w, u, u_w, transfer_code):
-<<<<<<< HEAD
         self.x = x
         self.w = w
         self.u = u
@@ -19,11 +18,6 @@ class ArtificialNeuron(object):
         self.ni = 0
         self.y = 0
         self.round = 4
-=======
-        self.x, self.w, self.u = x, w, u
-        self.u_w, self.transfer_code = u_w, transfer_code
-        self.ni, self.y = 0, 0
->>>>>>> c8d1d818fefeb265754bf7d1f9c4d8a9954d0fd8
 
     def execute(self):
         self.execute_sum_xw()
@@ -34,13 +28,8 @@ class ArtificialNeuron(object):
         for i in range(len(self.x)):
             self.ni += self.x[i]*self.w[i]
         self.ni += self.u*self.u_w
-<<<<<<< HEAD
         self.ni = round(self.ni, self.round)
         print("ni : ", self.ni)
-=======
-        self.ni = round(self.ni, 2)
-        self.showNi()
->>>>>>> c8d1d818fefeb265754bf7d1f9c4d8a9954d0fd8
 
     def activation(self):
         """Función de activación"""
